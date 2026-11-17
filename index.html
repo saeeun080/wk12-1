@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Storybook - English Reading</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Gowun+Dodum&display=swap');
+
+:root {
+  --purple:#8875cf;
+  --light-purple:#eeeaff;
+  --pink:#ffb8c9;
+  --cream:#fffaf0;
+  --ink:#38334c;
+  --muted:#89849c;
+  --green:#8dc9a9;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:#f5f2ff;color:var(--ink);
+  font-family:'Nunito','Gowun Dodum',sans-serif;
+}
+button{font:inherit;cursor:pointer;border:0}
+.app{max-width:1050px;margin:auto;padding:25px 20px 50px}
+header{text-align:center;padding:15px 0 25px}
+.logo{font-size:13px;letter-spacing:3px;color:var(--purple);font-weight:900}
+header h1{font-size:34px;margin:8px 0 4px}
+header p{color:var(--muted);margin:0;font-size:14px}
+.tabs{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin:10px 0 24px}
+.tab{
+ padding:11px 22px;border-radius:30px;background:white;
+ color:#77718c;font-weight:800;box-shadow:0 3px 12px #5d4d9910;
+}
+.tab.active{background:var(--purple);color:white}
+.panel{display:none}
+.panel.active{display:block}
+.book{
+ max-width:780px;margin:auto;background:white;border-radius:25px;
+ overflow:hidden;box-shadow:0 12px 35px #5e4c8815;
+}
+.book-top{padding:17px 25px;display:flex;justify-content:space-between;align-items:center}
+.page-count{font-size:13px;color:var(--muted);font-weight:800}
+.progress{height:6px;background:#eeeafa;margin:0 25px;border-radius:10px;overflow:hidden}
+.progress div{height:100%;background:var(--purple);transition:.3s}
+.story-art{
+ height:300px;background:#202444;display:flex;align-items:center;
+ justify-content:center;position:relative;overflow:hidden;
+}
+.story-art svg{width:100%;height:100%;max-width:600px}
+.story-content{padding:25px 35px 20px;text-align:center}
+.story-content h2{font-size:24px;margin:0 0 12px;color:var(--purple)}
+.english{font-size:22px;line-height:1.8;font-weight:800;min-height:65px}
+.korean{color:var(--muted);font-size:15px;line-height:1.7;margin-top:10px}
+.controls{display:flex;justify-content:center;align-items:center;gap:12px;padding:15px 20px 28px}
+.btn{
+ padding:12px 23px;border-radius:25px;background:var(--light-purple);
+ color:var(--purple);font-weight:900;
+}
+.btn.primary{background:var(--purple);color:white}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.listen{background:#fff0f4;color:#d46b8d}
+.section-title{text-align:center;margin:10px 0 7px;font-size:26px}
+.section-sub{text-align:center;color:var(--muted);margin:0 0 23px;font-size:14px}
+.vocab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.word-card{
+ background:white;border-radius:20px;padding:20px;text-align:center;
+ box-shadow:0 5px 20px #5e4c8810;min-height:170px;
+}
+.word-emoji{font-size:35px}
+.word-card h3{font-size:21px;color:var(--purple);margin:8px 0 3px}
+.word-card p{margin:4px;color:var(--muted)}
+.word-card button{background:#f2efff;color:var(--purple);border-radius:20px;padding:7px 14px;margin-top:8px;font-weight:800}
+.quiz-box{max-width:700px;margin:auto;background:white;padding:30px;border-radius:25px;box-shadow:0 5px 20px #5e4c8810}
+.quiz-number{color:var(--purple);font-weight:900;font-size:13px}
+.question{font-size:22px;font-weight:900;margin:15px 0 20px}
+.choices{display:grid;gap:10px}
+.choice{
+ text-align:left;padding:15px 18px;background:#f7f5ff;border:2px solid transparent;
+ border-radius:13px;font-weight:700;color:var(--ink);
+}
+.choice:hover{border-color:#c9bdf5}
+.choice.correct{background:#e5f6ed;border-color:#81c9a0}
+.choice.wrong{background:#fff0f0;border-color:#f0a3a3}
+.feedback{margin-top:15px;font-weight:800;min-height:28px}
+.quiz-next{margin-top:15px}
+.result{text-align:center;padding:25px}
+.result .score{font-size:52px;color:var(--purple);font-weight:900}
+.result p{color:var(--muted)}
+.result button{margin-top:10px}
+.finish{text-align:center;background:white;border-radius:20px;padding:20px;margin:20px auto;max-width:780px}
+.finish h3{color:var(--purple)}
+@media(max-width:650px){
+ .app{padding:15px 12px 35px}
+ header h1{font-size:27px}
+ .tab{padding:9px 14px;font-size:13px}
+ .story-art{height:230px}
+ .story-content{padding:20px 17px}
+ .english{font-size:19px}
+ .vocab-grid{grid-template-columns:repeat(2,1fr);gap:9px}
+ .word-card{padding:14px 8px}
+ .controls{gap:7px}
+ .btn{padding:11px 15px;font-size:13px}
+ .quiz-box{padding:22px 17px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+ <div class="logo">LITTLE STORYBOOK</div>
+ <h1>📖 My English Storybook</h1>
+ <p>Read a story, discover new words, and enjoy English!</p>
+</header>
+
+<nav class="tabs">
+ <button class="tab active" data-tab="reading">📚 Story Reading</button>
+ <button class="tab" data-tab="vocab">🌱 Vocabulary</button>
+ <button class="tab" data-tab="quiz">⭐ Reading Quiz</button>
+</nav>
+
+<section class="panel active" id="reading">
+ <div class="book">
+  <div class="book-top">
+   <strong>✨ The Little Star Who Lost Its Light</strong>
+   <span class="page-count" id="pageCount">Page 1 / 6</span>
+  </div>
+  <div class="progress"><div id="progressBar" style="width:16.6%"></div></div>
+  <div class="story-art" id="art"></div>
+  <div class="story-content">
+   <h2 id="storyTitle"></h2>
+   <div class="english" id="englishText"></div>
+   <div class="korean" id="koreanText"></div>
+  </div>
+  <div class="controls">
+   <button class="btn" id="prevBtn" onclick="changePage(-1)">← Previous</button>
+   <button class="btn listen" onclick="speakStory()">🔊 Listen</button>
+   <button class="btn primary" id="nextBtn" onclick="changePage(1)">Next →</button>
+  </div>
+ </div>
+ <div class="finish" id="finishMessage" style="display:none">
+  <h3>🌟 You finished the story!</h3>
+  <p>Great job! Now let's learn some new words.</p>
+  <button class="btn primary" onclick="openTab('vocab')">Learn Vocabulary →</button>
+ </div>
+</section>
+
+<section class="panel" id="vocab">
+ <h2 class="section-title">🌱 Story Vocabulary</h2>
+ <p class="section-sub">Learn the important words from the story.</p>
+ <div class="vocab-grid" id="vocabGrid"></div>
+ <div style="text-align:center;margin-top:25px">
+  <button class="btn primary" onclick="openTab('quiz')">Take the Reading Quiz →</button>
+ </div>
+</section>
+
+<section class="panel" id="quiz">
+ <h2 class="section-title">⭐ Reading Comprehension</h2>
+ <p class="section-sub">How well did you understand the story?</p>
+ <div class="quiz-box" id="quizBox">
+  <div id="questionArea"></div>
+ </div>
+</section>
+</div>
+
+<script>
+const pages = [
+{
+ title:"A Little Star",
+ en:"High above the world, there lived a little star named Stella. She loved shining brightly in the night sky.",
+ ko:"세상 저 높은 곳에 스텔라라는 작은 별이 살고 있었어요. 스텔라는 밤하늘에서 밝게 빛나는 것을 좋아했어요.",
+ art:0
+},
+{
+ title:"A Sad Night",
+ en:"One evening, Stella looked down and noticed something strange. Her light was getting weaker and weaker. She could no longer shine brightly.",
+ ko:"어느 날 저녁, 스텔라는 아래를 내려다보다가 이상한 것을 발견했어요. 자신의 빛이 점점 약해지고 있었어요. 더 이상 밝게 빛날 수 없었죠.",
+ art:1
+},
+{
+ title:"Looking for Help",
+ en:"Stella felt worried and lonely. She asked the Moon, 'Why can't I shine anymore?' The Moon smiled and said, 'Maybe you need to find what makes you happy.'",
+ ko:"스텔라는 걱정되고 외로웠어요. 달에게 물었어요. '왜 더 이상 빛날 수 없을까요?' 달은 미소 지으며 말했어요. '너를 행복하게 만드는 것을 찾아야 할지도 몰라.'",
+ art:2
+},
+{
+ title:"A Little Friend",
+ en:"On her journey, Stella saw a small bird sitting alone in a tree. The bird looked cold and scared. Stella moved closer and tried to comfort it.",
+ ko:"여행을 하던 중 스텔라는 나무에 홀로 앉아 있는 작은 새를 보았어요. 새는 추워 보였고 무서워하고 있었어요. 스텔라는 가까이 다가가 새를 위로해 주려고 했어요.",
+ art:3
+},
+{
+ title:"The Power of Kindness",
+ en:"Stella told the bird a funny story. The bird began to smile and sing. Suddenly, Stella felt warm inside. Her light started to shine again!",
+ ko:"스텔라는 새에게 재미있는 이야기를 들려주었어요. 새는 미소를 짓기 시작했고 노래를 불렀어요. 갑자기 스텔라의 마음속이 따뜻해졌어요. 별빛이 다시 빛나기 시작했어요!",
+ art:4
+},
+{
+ title:"Shine Brightly!",
+ en:"From that day on, Stella understood something important. Helping others made her happy. And when she was happy, her light was brighter than ever!",
+ ko:"그날 이후 스텔라는 중요한 사실을 깨달았어요. 다른 사람을 돕는 것이 자신을 행복하게 만든다는 것을요. 그리고 행복할 때 스텔라의 빛은 그 어느 때보다 밝아졌어요!",
+ art:5
+}
+];
+
+function scene(n){
+ const stars = `<g fill="#fff3a5">
+ <circle cx="70" cy="40" r="2"/><circle cx="155" cy="65" r="2"/>
+ <circle cx="470" cy="45" r="2"/><circle cx="530" cy="110" r="2"/>
+ <circle cx="370" cy="35" r="2"/><circle cx="100" cy="140" r="1.5"/>
+ <circle cx="430" cy="170" r="2"/><circle cx="250" cy="35" r="2"/>
+ </g>`;
+ const star = (x,y,r,color="#ffdf70") =>
+ `<path d="M${x} ${y-r} Q${x+r*.18} ${y-r*.2} ${x+r} ${y} Q${x+r*.2} ${y+r*.2} ${x} ${y+r} Q${x-r*.2} ${y+r*.2} ${x-r} ${y} Q${x-r*.2} ${y-r*.2} ${x} ${y-r}" fill="${color}"/>`;
+ const moon = `<path d="M450 65 A50 50 0 1 0 510 125 A42 42 0 0 1 450 65" fill="#ffe6a5"/>`;
+ const tree = `<path d="M100 280 L100 175" stroke="#74534e" stroke-width="13"/>
+ <circle cx="100" cy="155" r="48" fill="#609b84"/>
+ <circle cx="65" cy="170" r="30" fill="#78b596"/>
+ <circle cx="132" cy="175" r="32" fill="#78b596"/>`;
+ let extra="";
+ if(n===0){
+  extra=`${moon}${star(285,145,65)}<circle cx="270" cy="145" r="4" fill="#66523c"/><circle cx="300" cy="145" r="4" fill="#66523c"/><path d="M274 165 Q285 178 298 165" stroke="#66523c" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+ }
+ if(n===1){
+  extra=`${moon}${star(285,145,48,"#d5c9a2")}<path d="M270 155 Q285 148 300 155" fill="none" stroke="#66523c" stroke-width="3"/>`;
+ }
+ if(n===2){
+  extra=`${moon}<path d="M455 110 Q470 125 490 110" stroke="#8d704e" fill="none" stroke-width="3"/><path d="M470 135 Q480 145 490 135" stroke="#8d704e" fill="none" stroke-width="3"/>${star(270,150,52)}`;
+ }
+ if(n===3){
+  extra=`${tree}${star(340,145,42)}<path d="M90 140 Q75 115 65 130 Q60 145 90 151" fill="#e9a9a9"/><ellipse cx="100" cy="148" rx="18" ry="14" fill="#d9a17c"/><circle cx="107" cy="144" r="3" fill="#3e3443"/><path d="M113 150 L125 153 L113 156" fill="#e9aa59"/>${star(340,145,42)}`;
+ }
+ if(n===4){
+  extra=`${tree}${star(290,120,63)}<path d="M300 145 Q310 157 322 145" stroke="#66523c" fill="none" stroke-width="3"/><ellipse cx="350" cy="185" rx="20" ry="14" fill="#d9a17c"/><circle cx="358" cy="180" r="3" fill="#333"/>`;
+ }
+ if(n===5){
+  extra=`${moon}${star(280,145,75)}${star(180,80,17)}${star(390,80,19)}${star(350,220,15)}<path d="M100 280 Q280 230 500 280" fill="none" stroke="#536e83" stroke-width="3"/>`;
+ }
+ return `<svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+ <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+ <stop stop-color="${n===5?"#34316e":"#252b55"}"/><stop offset="1" stop-color="${n===5?"#a27eb8":"#59658e"}"/>
+ </linearGradient></defs>
+ <rect width="600" height="300" fill="url(#sky)"/>
+ ${stars}${extra}
+ <path d="M0 275 Q150 250 300 278 T600 270 L600 300 L0 300" fill="#273c53"/>
+ </svg>`;
+}
+
+let currentPage=0;
+function renderPage(){
+ const p=pages[currentPage];
+ document.getElementById("storyTitle").textContent=p.title;
+ document.getElementById("englishText").textContent=p.en;
+ document.getElementById("koreanText").textContent=p.ko;
+ document.getElementById("art").innerHTML=scene(p.art);
+ document.getElementById("pageCount").textContent=`Page ${currentPage+1} / ${pages.length}`;
+ document.getElementById("progressBar").style.width=((currentPage+1)/pages.length*100)+"%";
+ document.getElementById("prevBtn").disabled=currentPage===0;
+ document.getElementById("nextBtn").textContent=currentPage===pages.length-1?"Finish ✓":"Next →";
+ document.getElementById("finishMessage").style.display=currentPage===pages.length-1?"block":"none";
+}
+function changePage(d){
+ currentPage=Math.max(0,Math.min(pages.length-1,currentPage+d));
+ renderPage();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function speakStory(){
+ if(!("speechSynthesis" in window)){alert("Your browser does not support speech.");return;}
+ speechSynthesis.cancel();
+ const u=new SpeechSynthesisUtterance(pages[currentPage].en);
+ u.lang="en-US";u.rate=.85;
+ speechSynthesis.speak(u);
+}
+const vocab=[
+ ["✨","star","별","Stella is a little star."],
+ ["💡","light","빛","Her light was getting weaker."],
+ ["😟","worried","걱정하는","Stella felt worried."],
+ ["🧸","lonely","외로운","She felt lonely."],
+ ["🐦","bird","새","She saw a small bird."],
+ ["🤝","comfort","위로하다","She tried to comfort the bird."],
+ ["😊","smile","미소 짓다","The bird began to smile."],
+ ["💗","kindness","친절","Kindness made Stella happy."],
+ ["🌟","brightly","밝게","Her light shone brightly."]
+];
+document.getElementById("vocabGrid").innerHTML=vocab.map(v=>`
+<div class="word-card">
+ <div class="word-emoji">${v[0]}</div>
+ <h3>${v[1]}</h3><p>${v[2]}</p>
+ <p style="font-size:12px">${v[3]}</p>
+ <button onclick="speakWord('${v[1]}')">🔊 Listen</button>
+</div>`).join("");
+function speakWord(word){
+ const u=new SpeechSynthesisUtterance(word);
+ u.lang="en-US";u.rate=.85;speechSynthesis.cancel();speechSynthesis.speak(u);
+}
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>openTab(b.dataset.tab)));
+function openTab(id){
+ document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));
+ document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active",p.id===id));
+ window.scrollTo({top:0,behavior:"smooth"});
+ if(id==="quiz"&&!quizStarted)renderQuiz();
+}
+
+const questions=[
+ {q:"What is the name of the little star?",c:["Luna","Stella","Bella","Lucy"],a:1,e:"The little star's name is Stella."},
+ {q:"What happened to Stella's light?",c:["It became weaker.","It turned blue.","It disappeared forever.","It became bigger."],a:0,e:"Her light was getting weaker and weaker."},
+ {q:"Who did Stella ask for help?",c:["The Sun","A bird","The Moon","A cloud"],a:2,e:"Stella asked the Moon for help."},
+ {q:"What did Stella find in a tree?",c:["A little bird","A rabbit","A butterfly","A cat"],a:0,e:"She saw a small bird sitting alone in a tree."},
+ {q:"How did Stella help the bird?",c:["She gave it food.","She told it a funny story.","She built a house.","She sang a song."],a:1,e:"Stella told the bird a funny story."},
+ {q:"What made Stella's light shine again?",c:["Sleeping all day","Finding treasure","Helping others","Moving to the Moon"],a:2,e:"Helping others made Stella happy, and her light shone again."}
+];
+let qi=0,score=0,answered=false,quizStarted=false;
+function renderQuiz(){
+ quizStarted=true;qi=0;score=0;renderQuestion();
+}
+function renderQuestion(){
+ answered=false;
+ const box=document.getElementById("questionArea");
+ if(qi>=questions.length){
+ box.innerHTML=`<div class="result">
+ <div style="font-size:45px">🏆</div>
+ <h2>Story Master!</h2>
+ <div class="score">${score} / ${questions.length}</div>
+ <p>You completed the reading quiz!</p>
+ <p>${score===6?"Perfect! You understood the story very well!":score>=4?"Great job! Keep reading English stories!":"Good try! Read the story again and try once more!"}</p>
+ <button class="btn primary" onclick="renderQuiz()">Try Again ↻</button>
+ <button class="btn" onclick="openTab('reading')">Read Again 📖</button>
+ </div>`;
+ return;
+ }
+ const q=questions[qi];
+ box.innerHTML=`
+ <div class="quiz-number">QUESTION ${qi+1} / ${questions.length}</div>
+ <div class="question">${q.q}</div>
+ <div class="choices">${q.c.map((c,i)=>`<button class="choice" onclick="answer(${i})">${String.fromCharCode(65+i)}. ${c}</button>`).join("")}</div>
+ <div class="feedback" id="feedback"></div>
+ <button class="btn primary quiz-next" id="quizNext" style="display:none" onclick="qi++;renderQuestion()">Next Question →</button>`;
+}
+function answer(i){
+ if(answered)return;
+ answered=true;
+ const q=questions[qi];
+ const buttons=document.querySelectorAll(".choice");
+ buttons.forEach((b,j)=>{
+  if(j===q.a)b.classList.add("correct");
+  if(j===i&&i!==q.a)b.classList.add("wrong");
+ });
+ const feedback=document.getElementById("feedback");
+ if(i===q.a){
+  score++;feedback.style.color="#4caa78";
+  feedback.textContent="✓ Correct! "+q.e;
+ }else{
+  feedback.style.color="#d46b8d";
+  feedback.textContent="Not quite. "+q.e;
+ }
+ document.getElementById("quizNext").style.display="inline-block";
+}
+renderPage();
+</script>
+</body>
+</html>
